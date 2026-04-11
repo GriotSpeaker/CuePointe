@@ -1,362 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register to Play | CuePointe Action Pool</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#F5A800;--gold-dark:#D68A00;--green:#2C5F2E;--green-dark:#1a3a1b;--black:#0D0D0D;--white:#ffffff;--orange:#E8681A;--gray:#141414}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:10px 5vw;background:rgba(13,13,13,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,168,0,0.15)}
-.nav-logo img{height:48px;width:auto;filter:drop-shadow(0 2px 8px rgba(245,168,0,0.3))}
-.nav-links{display:flex;gap:22px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Barlow Condensed';font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--black);padding:9px 20px;border:none;cursor:pointer;font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background 0.2s;text-decoration:none;display:inline-block}
-.nav-cta:hover{background:var(--orange)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.hamburger span{width:24px;height:2px;background:var(--gold)}
-.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,13,13,0.99);z-index:150;padding:18px 6vw 26px;border-bottom:1px solid rgba(245,168,0,0.2)}
-.mobile-nav.open{display:block}
-.mobile-nav ul{list-style:none}
-.mobile-nav ul li{border-bottom:1px solid rgba(255,255,255,0.06)}
-.mobile-nav ul li a{display:block;padding:13px 0;color:rgba(255,255,255,0.7);text-decoration:none;font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Registration | CuePointe Action Pool</title>
+    <style>
+        :root {
+            --brand-gold: #D4AF37;
+            --brand-black: #0a0a0a;
+            --neon-green: #39FF14;
+            --stadium-gray: #1a1a1a;
+        }
 
-.page-hero{padding:120px 6vw 60px;background:var(--black);position:relative;border-bottom:1px solid rgba(245,168,0,0.15)}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(232,104,26,0.12) 0%,transparent 65%);pointer-events:none}
-.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,168,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,168,0,0.03) 1px,transparent 1px);background-size:50px 50px}
-.hero-inner{position:relative;z-index:2}
-.breadcrumb{font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px}
-.breadcrumb a{color:var(--gold);text-decoration:none}
-.page-hero h1{font-family:'Bebas Neue';font-size:clamp(52px,8vw,100px);line-height:0.9;color:var(--white)}
-.page-hero h1 span{color:var(--gold)}
-.page-hero p{margin-top:14px;font-size:16px;color:rgba(255,255,255,0.55);max-width:540px;line-height:1.8}
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: var(--brand-black);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-transform: uppercase;
+        }
 
-/* LAYOUT */
-.reg-wrap{padding:50px 6vw 80px;display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:start;max-width:1300px;margin:0 auto}
+        .form-container {
+            background: var(--stadium-gray);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--brand-gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            width: 100%;
+            max-width: 500px;
+            margin: 20px;
+        }
 
-/* LEFT INFO */
-.info-block h3{font-family:'Bebas Neue';font-size:32px;color:var(--gold);margin-bottom:16px}
-.info-block p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:22px}
-.steps-list{list-style:none;margin-bottom:32px}
-.step{display:flex;gap:16px;margin-bottom:22px}
-.step-dot{width:36px;height:36px;background:var(--gold);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:18px;flex-shrink:0;margin-top:2px}
-.step-content h5{font-family:'Barlow Condensed';font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:4px}
-.step-content p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
-.fee-table{width:100%;border-collapse:collapse;margin-bottom:28px}
-.fee-table tr{border-bottom:1px solid rgba(255,255,255,0.06)}
-.fee-table td{padding:11px 0;font-size:14px;color:rgba(255,255,255,0.65)}
-.fee-table td:first-child{font-family:'Barlow Condensed';font-weight:700;color:var(--white)}
-.fee-table td:last-child{text-align:right;font-family:'Bebas Neue';font-size:20px;color:var(--gold)}
-.perks{list-style:none}
-.perks li{display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.perks li::before{content:'✓';color:var(--gold);flex-shrink:0}
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-/* FORM */
-.reg-form-wrap{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);padding:40px}
-.reg-form-wrap h3{font-family:'Bebas Neue';font-size:32px;color:var(--white);margin-bottom:6px}
-.reg-form-wrap .subtitle{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:30px;font-family:'Barlow Condensed';letter-spacing:1px}
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--brand-gold);
+            letter-spacing: 2px;
+        }
 
-/* STEP INDICATOR */
-.step-indicator{display:flex;gap:0;margin-bottom:32px}
-.si{flex:1;padding:10px;text-align:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);font-family:'Barlow Condensed';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);position:relative;cursor:pointer;transition:all 0.2s}
-.si.active{background:rgba(245,168,0,0.1);border-color:var(--gold);color:var(--gold)}
-.si.done{background:rgba(44,95,46,0.15);border-color:var(--green);color:#6ee86e}
-.si-num{font-family:'Bebas Neue';font-size:20px;display:block}
+        .header p {
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
 
-.form-step{display:none}
-.form-step.active{display:block}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-family:'Barlow Condensed';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:7px}
-.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:11px 14px;font-family:'Barlow';font-size:14px;outline:none;transition:border-color 0.2s}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
-.form-group select option{background:#1a1a1a;color:var(--white)}
-.form-group textarea{height:90px;resize:vertical}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-/* SKILL SELECTOR */
-.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.skill-card{border:1px solid rgba(255,255,255,0.1);padding:16px;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03)}
-.skill-card:hover{border-color:var(--gold);background:rgba(245,168,0,0.05)}
-.skill-card.selected{border-color:var(--gold);background:rgba(245,168,0,0.1)}
-.skill-card .sk-icon{font-size:24px;margin-bottom:6px}
-.skill-card .sk-name{font-family:'Barlow Condensed';font-weight:700;font-size:14px;text-transform:uppercase;color:var(--white);margin-bottom:3px}
-.skill-card .sk-desc{font-size:12px;color:rgba(255,255,255,0.45)}
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
 
-/* EVENT CARDS */
-.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.event-card{border:1px solid rgba(255,255,255,0.1);padding:14px;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.03)}
-.event-card:hover,.event-card.selected{border-color:var(--gold);background:rgba(245,168,0,0.07)}
-.event-card .ev-name{font-family:'Barlow Condensed';font-weight:700;font-size:13px;text-transform:uppercase;color:var(--white);margin-bottom:4px}
-.event-card .ev-date{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:4px}
-.event-card .ev-fee{font-family:'Bebas Neue';font-size:18px;color:var(--gold)}
-.event-card .ev-status{display:inline-block;padding:2px 8px;font-family:'Barlow Condensed';font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(110,232,110,0.3);color:#6ee86e;background:rgba(44,95,46,0.2);margin-top:4px}
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
 
-/* NAV BTNS */
-.form-nav{display:flex;gap:12px;margin-top:24px}
-.btn-next{flex:1;background:var(--gold);color:var(--black);padding:14px;border:none;cursor:pointer;font-family:'Barlow Condensed';font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;transition:background 0.2s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)}
-.btn-next:hover{background:var(--orange)}
-.btn-back{background:transparent;color:rgba(255,255,255,0.5);padding:14px 20px;border:1px solid rgba(255,255,255,0.15);cursor:pointer;font-family:'Barlow Condensed';font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:all 0.2s}
-.btn-back:hover{border-color:var(--gold);color:var(--gold)}
+        input:focus {
+            border-color: var(--neon-green);
+            outline: none;
+        }
 
-.form-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px}
-.form-check input[type="checkbox"]{width:16px;height:16px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
-.form-check label{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5}
-.form-check label a{color:var(--gold)}
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--brand-gold);
+            color: black;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
 
-/* SUCCESS */
-.success-screen{display:none;text-align:center;padding:40px 20px}
-.success-screen .big-check{font-size:64px;margin-bottom:20px}
-.success-screen h3{font-family:'Bebas Neue';font-size:44px;color:var(--gold);margin-bottom:10px}
-.success-screen p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:24px}
-.success-details{background:rgba(245,168,0,0.08);border:1px solid rgba(245,168,0,0.2);padding:20px;margin-bottom:24px;text-align:left}
-.success-details p{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:6px}
-.success-details strong{color:var(--gold)}
+        .btn-submit:hover {
+            background: var(--neon-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(57, 255, 20, 0.4);
+        }
 
-footer{background:rgba(0,0,0,0.6);border-top:1px solid rgba(255,255,255,0.06);padding:28px 6vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-footer p{font-size:12px;color:rgba(255,255,255,0.3)}
-.ft-links{display:flex;gap:20px}
-.ft-links a{font-family:'Barlow Condensed';font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s}
-.ft-links a:hover{color:var(--gold)}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.5s,transform 0.5s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:900px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.reg-wrap{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.skill-grid,.event-grid{grid-template-columns:1fr}}
-</style>
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .back-link:hover { color: var(--brand-gold); }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><a href="index.html"><img src="CuePointe_Logo.jpg" alt="CuePointe"></a></div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="rankings.html">Rankings</a></li>
-    <li><a href="register.html" class="active">Register</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="venues.html">Venues</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <a href="register.html" class="nav-cta">Register Now</a>
-  <div class="hamburger" onclick="document.getElementById('mn').classList.toggle('open')"><span></span><span></span><span></span></div>
-</nav>
-<div class="mobile-nav" id="mn"><ul>
-  <li><a href="index.html">Home</a></li><li><a href="rankings.html">Rankings</a></li>
-  <li><a href="register.html">Register to Play</a></li><li><a href="news.html">News</a></li>
-  <li><a href="about.html">About Us</a></li><li><a href="venues.html">Venues</a></li>
-  <li><a href="contact.html">Contact</a></li>
-</ul></div>
-
-<div class="page-hero">
-  <div class="page-hero-grid"></div>
-  <div class="hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Register</div>
-    <h1>REGISTER<br><span>TO PLAY</span></h1>
-    <p>Join Uganda's most structured pool competition platform. Get your official ranking, earn badges, and compete for real prizes.</p>
-  </div>
-</div>
-
-<div class="reg-wrap">
-  <!-- LEFT INFO -->
-  <div>
-    <div class="info-block reveal">
-      <h3>HOW IT WORKS</h3>
-      <p>Registering with CuePointe gets you into the official tournament system. Every match you play counts toward your ranking profile.</p>
-      <ul class="steps-list">
-        <li class="step"><div class="step-dot">1</div><div class="step-content"><h5>Fill the Form</h5><p>Choose your skill level, preferred tournament, and provide your contact details.</p></div></li>
-        <li class="step"><div class="step-dot">2</div><div class="step-content"><h5>WhatsApp Confirmation</h5><p>We'll message you within 24 hours to confirm your spot and send venue details.</p></div></li>
-        <li class="step"><div class="step-dot">3</div><div class="step-content"><h5>Pay at the Venue</h5><p>Entry fees are paid on the day. No online payment required.</p></div></li>
-        <li class="step"><div class="step-dot">4</div><div class="step-content"><h5>Play & Earn Your Rank</h5><p>Every game earns ranking points. Your official CuePointe profile is activated after your first game.</p></div></li>
-      </ul>
-    </div>
-    <div class="info-block reveal">
-      <h3>ENTRY FEES</h3>
-      <table class="fee-table">
-        <tr><td>Weekly Knockout</td><td>UGX 5,000</td></tr>
-        <tr><td>Monthly Grand Knockout</td><td>UGX 10,000</td></tr>
-        <tr><td>City League – Division 2</td><td>UGX 15,000</td></tr>
-        <tr><td>City League – Division 1</td><td>UGX 20,000</td></tr>
-        <tr><td>Community League</td><td>UGX 10,000</td></tr>
-        <tr><td>Championship (Qualify via League)</td><td>Free</td></tr>
-      </table>
-    </div>
-    <div class="info-block reveal">
-      <h3>WHAT YOU GET</h3>
-      <ul class="perks">
-        <li>Official CuePointe Player ID &amp; Profile</li>
-        <li>Digital ranking updated after every game</li>
-        <li>Talent badges (Fast Finish, Flawless, etc.)</li>
-        <li>Access to league seedings &amp; championships</li>
-        <li>Community membership &amp; event notifications</li>
-        <li>Chance to qualify for the Uganda National Championship</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- FORM -->
-  <div class="reg-form-wrap reveal">
-    <h3>REGISTRATION FORM</h3>
-    <p class="subtitle">Complete all 3 steps to register</p>
-
-    <div class="step-indicator">
-      <div class="si active" id="si1"><span class="si-num">1</span>Personal Info</div>
-      <div class="si" id="si2"><span class="si-num">2</span>Skill &amp; Event</div>
-      <div class="si" id="si3"><span class="si-num">3</span>Confirm</div>
-    </div>
-
-    <!-- STEP 1 -->
-    <div class="form-step active" id="step1">
-      <div class="form-row">
-        <div class="form-group"><label>First Name *</label><input type="text" id="fn" placeholder="Your first name"></div>
-        <div class="form-group"><label>Last Name *</label><input type="text" id="ln" placeholder="Your last name"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Phone / WhatsApp *</label><input type="tel" id="ph" placeholder="+256 7XX XXX XXX"></div>
-        <div class="form-group"><label>Age *</label><input type="number" id="ag" placeholder="Your age" min="10" max="99"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Email (Optional)</label><input type="email" id="em" placeholder="you@email.com"></div>
-        <div class="form-group"><label>Area / Neighborhood *</label><input type="text" id="ar" placeholder="e.g. Kabalagala"></div>
-      </div>
-      <div class="form-group"><label>Gender</label><select id="gn"><option value="">Prefer not to say</option><option>Male</option><option>Female</option><option>Other</option></select></div>
-      <div class="form-nav"><button class="btn-next" onclick="goStep(2)">Next: Skill &amp; Event →</button></div>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="form-step" id="step2">
-      <div class="form-group">
-        <label>Select Your Skill Level *</label>
-        <div class="skill-grid">
-          <div class="skill-card" onclick="selectSkill(this,'beginner')"><div class="sk-icon">🟢</div><div class="sk-name">Beginner</div><div class="sk-desc">I play casually at bars or home</div></div>
-          <div class="skill-card" onclick="selectSkill(this,'intermediate')"><div class="sk-icon">🟡</div><div class="sk-name">Intermediate</div><div class="sk-desc">I play regularly and win often</div></div>
-          <div class="skill-card" onclick="selectSkill(this,'advanced')"><div class="sk-icon">🟠</div><div class="sk-name">Advanced</div><div class="sk-desc">I compete seriously in events</div></div>
-          <div class="skill-card" onclick="selectSkill(this,'pro')"><div class="sk-icon">🔴</div><div class="sk-name">Professional</div><div class="sk-desc">I play at the highest local level</div></div>
+    <div class="form-container">
+        <div class="header">
+            <h1>JOIN THE ACTION</h1>
+            <p>Official Player Entry Form</p>
         </div>
-        <input type="hidden" id="skill">
-      </div>
-      <div class="form-group">
-        <label>Choose Tournament / Event *</label>
-        <div class="event-grid">
-          <div class="event-card" onclick="selectEvent(this,'wk18')"><div class="ev-name">Weekly Knockout #18</div><div class="ev-date">April 5, 2025 · 4PM · Kabalagala</div><div class="ev-fee">UGX 5,000</div><div class="ev-status">Open</div></div>
-          <div class="event-card" onclick="selectEvent(this,'wk19')"><div class="ev-name">Weekly Knockout #19</div><div class="ev-date">April 12, 2025 · 4PM · Kansanga</div><div class="ev-fee">UGX 5,000</div><div class="ev-status">Open</div></div>
-          <div class="event-card" onclick="selectEvent(this,'mgk')"><div class="ev-name">Monthly Grand Knockout</div><div class="ev-date">April 26, 2025 · 2PM · TBC</div><div class="ev-fee">UGX 10,000</div><div class="ev-status">Open</div></div>
-          <div class="event-card" onclick="selectEvent(this,'league1')"><div class="ev-name">City League Div 1</div><div class="ev-date">Season: April – June 2025</div><div class="ev-fee">UGX 20,000</div><div class="ev-status">Open</div></div>
-          <div class="event-card" onclick="selectEvent(this,'league2')"><div class="ev-name">City League Div 2</div><div class="ev-date">Season: April – June 2025</div><div class="ev-fee">UGX 15,000</div><div class="ev-status">Open</div></div>
-          <div class="event-card" onclick="selectEvent(this,'comm')"><div class="ev-name">Community League</div><div class="ev-date">May – July 2025 · Kansanga</div><div class="ev-fee">UGX 10,000</div><div class="ev-status">Open</div></div>
-        </div>
-        <input type="hidden" id="event">
-      </div>
-      <div class="form-group"><label>How did you hear about us?</label><select id="src"><option value="">Select...</option><option>Friend / Word of mouth</option><option>Social media</option><option>Poster / Flyer</option><option>Previous CuePointe event</option><option>Other</option></select></div>
-      <div class="form-nav"><button class="btn-back" onclick="goStep(1)">← Back</button><button class="btn-next" onclick="goStep(3)" style="flex:1">Next: Confirm →</button></div>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Full Player Name</label>
+                <input type="text" id="name" name="name" placeholder="E.G. THOMAS OTIENO" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">WhatsApp Number (For Tournament Alerts)</label>
+                <input type="tel" id="phone" name="phone" placeholder="+256..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="venue">Preferred Home Venue</label>
+                <select id="venue" name="venue">
+                    <option value="kabalagala">Kabalagala Hub</option>
+                    <option value="kansanga">Kansanga Hub</option>
+                    <option value="other">Other (Kampala)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rank">Current Player Level</label>
+                <select id="rank" name="rank">
+                    <option value="amateur">Amateur / Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="pro">Semi-Pro / Pro</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">CONFIRM REGISTRATION</button>
+        </form>
+
+        <a href="index.html" class="back-link">← RETURN TO HOME</a>
     </div>
 
-    <!-- STEP 3 -->
-    <div class="form-step" id="step3">
-      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);padding:24px;margin-bottom:20px">
-        <div style="font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px">// Registration Summary</div>
-        <div id="summary" style="font-size:14px;color:rgba(255,255,255,0.7);line-height:2.2"></div>
-      </div>
-      <div class="form-group"><label>Additional Comments (Optional)</label><textarea id="notes" placeholder="Any questions, special requests, or additional info..."></textarea></div>
-      <div class="form-check">
-        <input type="checkbox" id="agree">
-        <label for="agree">I agree to the <a href="about.html#rules">CuePointe tournament rules and code of conduct</a>. I understand the entry fee is paid at the venue on the day of the event. I confirm all information provided is accurate.</label>
-      </div>
-      <div class="form-nav"><button class="btn-back" onclick="goStep(2)">← Back</button><button class="btn-next" onclick="submitFinal()" style="flex:1">Submit Registration ✓</button></div>
-    </div>
-
-    <!-- SUCCESS -->
-    <div class="success-screen" id="successScreen">
-      <div class="big-check">🎱</div>
-      <h3>YOU'RE REGISTERED!</h3>
-      <p>Welcome to CuePointe. We'll contact you on WhatsApp within 24 hours to confirm your spot and share the venue details.</p>
-      <div class="success-details" id="successDetails"></div>
-      <a href="rankings.html" style="background:var(--gold);color:var(--black);padding:12px 28px;text-decoration:none;font-family:'Barlow Condensed';font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);display:inline-block">View Current Rankings</a>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>© 2025 CuePointe Action Pool · Kampala, Uganda</p>
-  <div class="ft-links"><a href="index.html">Home</a><a href="rankings.html">Rankings</a><a href="register.html">Register</a><a href="contact.html">Contact</a></div>
-</footer>
-
-<script>
-  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add('visible'),i*60)})},{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-
-  let currentStep=1,selectedSkill='',selectedEvent='',selectedEventName='';
-
-  function goStep(n){
-    if(n>currentStep){
-      if(currentStep===1){
-        if(!document.getElementById('fn').value.trim()||!document.getElementById('ph').value.trim()||!document.getElementById('ar').value.trim()||!document.getElementById('ag').value.trim()){
-          alert('Please fill in all required fields (First Name, Phone, Area, Age).');return;
-        }
-      }
-      if(currentStep===2){
-        if(!selectedSkill){alert('Please select your skill level.');return;}
-        if(!selectedEvent){alert('Please choose a tournament to register for.');return;}
-        buildSummary();
-      }
-    }
-    document.querySelectorAll('.form-step').forEach(s=>s.classList.remove('active'));
-    document.getElementById('step'+n).classList.add('active');
-    ['si1','si2','si3'].forEach((id,i)=>{
-      const el=document.getElementById(id);
-      el.classList.remove('active','done');
-      if(i+1===n) el.classList.add('active');
-      else if(i+1<n) el.classList.add('done');
-    });
-    currentStep=n;
-  }
-
-  function selectSkill(el,val){
-    document.querySelectorAll('.skill-card').forEach(c=>c.classList.remove('selected'));
-    el.classList.add('selected');selectedSkill=val;
-    document.getElementById('skill').value=val;
-  }
-
-  function selectEvent(el,val){
-    document.querySelectorAll('.event-card').forEach(c=>c.classList.remove('selected'));
-    el.classList.add('selected');selectedEvent=val;
-    selectedEventName=el.querySelector('.ev-name').textContent;
-    document.getElementById('event').value=val;
-  }
-
-  function buildSummary(){
-    const fn=document.getElementById('fn').value;
-    const ln=document.getElementById('ln').value;
-    const ph=document.getElementById('ph').value;
-    const ar=document.getElementById('ar').value;
-    document.getElementById('summary').innerHTML=`
-      <div><strong style="color:var(--gold)">Name:</strong> ${fn} ${ln}</div>
-      <div><strong style="color:var(--gold)">Phone:</strong> ${ph}</div>
-      <div><strong style="color:var(--gold)">Area:</strong> ${ar}</div>
-      <div><strong style="color:var(--gold)">Skill Level:</strong> ${selectedSkill.charAt(0).toUpperCase()+selectedSkill.slice(1)}</div>
-      <div><strong style="color:var(--gold)">Tournament:</strong> ${selectedEventName}</div>
-    `;
-  }
-
-  function submitFinal(){
-    if(!document.getElementById('agree').checked){alert('Please agree to the tournament rules to continue.');return;}
-    const fn=document.getElementById('fn').value;
-    const ln=document.getElementById('ln').value;
-    const ph=document.getElementById('ph').value;
-    document.querySelectorAll('.form-step').forEach(s=>s.style.display='none');
-    document.querySelector('.step-indicator').style.display='none';
-    document.querySelector('.subtitle').style.display='none';
-    document.querySelector('h3').style.display='none';
-    const sc=document.getElementById('successScreen');
-    sc.style.display='block';
-    document.getElementById('successDetails').innerHTML=`
-      <p><strong>Player:</strong> ${fn} ${ln}</p>
-      <p><strong>Phone/WhatsApp:</strong> ${ph}</p>
-      <p><strong>Event:</strong> ${selectedEventName}</p>
-      <p><strong>Skill Level:</strong> ${selectedSkill.charAt(0).toUpperCase()+selectedSkill.slice(1)}</p>
-      <p style="margin-top:10px;color:rgba(255,255,255,0.5);font-size:12px">⚠ Entry fee is paid at the venue on the day of the event.</p>
-    `;
-  }
-</script>
 </body>
 </html>
