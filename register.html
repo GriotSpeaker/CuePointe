@@ -139,31 +139,25 @@
             <p>Sanctioned Action Pool Series</p>
         </div>
 
-        <form>
+      <form action="https://formspree.io/f/xvzvedly" method="POST">
             <div class="form-group">
                 <label>Full Player Name</label>
-                <input type="text" placeholder="ENTER NAME" required>
+                <input type="text" name="name" placeholder="ENTER NAME" required>
             </div>
 
             <div class="form-group">
                 <label>WhatsApp Number</label>
-                <input type="tel" placeholder="+256..." required>
+                <input type="tel" name="whatsapp" placeholder="+256..." required>
             </div>
 
             <div class="form-group">
                 <label>Preferred Venue</label>
-                <select>
-                    <option>Kabalagala Hub</option>
-                    <option>Kansanga Hub</option>
-                    <option>Tournament Special</option>
+                <select name="venue">
+                    <option value="Kabalagala">Kabalagala Hub</option>
+                    <option value="Kansanga">Kansanga Hub</option>
+                    <option value="Tournament Special">Tournament Special</option>
                 </select>
             </div>
 
             <button type="submit" class="btn-confirm">CONFIRM REGISTRATION</button>
         </form>
-
-        <a href="index.html" class="back-link">← EXIT REGISTRATION</a>
-    </div>
-
-</body>
-</html>
