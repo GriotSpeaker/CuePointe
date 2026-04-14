@@ -1,0 +1,8 @@
+# CuePointe Action Pool - robots.txt
+# Allow all search engines to crawl everything
+
+User-agent: *
+Allow: /
+
+# Point crawlers to your sitemap
+Sitemap: https://cuepointe.github.io/sitemap.xml
