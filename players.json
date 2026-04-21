@@ -1,12 +1,19 @@
 {
-  "last_updated": "2026-04-21",
-  "players": [
-    {
-      "id": 1,
-      "name": "Sample Player",
-      "matches_played": 0,
-      "wins": 0,
-      "rating": 1200
-    }
-  ]
+    "last_updated": "2026-04-21",
+    "players": [
+        {
+            "id": 1,
+            "name": "Sample Player",
+            "matches_played": 1,
+            "wins": 0,
+            "rating": 1190
+        },
+        {
+            "id": 2,
+            "name": "Abaka",
+            "matches_played": 1,
+            "wins": 1,
+            "rating": 1220
+        }
+    ]
 }
