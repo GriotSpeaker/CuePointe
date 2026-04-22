@@ -1,145 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Player Rankings | CuePointe Action Pool</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#F5A800;--gold-dark:#D68A00;--green:#2C5F2E;--green-dark:#1a3a1b;--black:#0D0D0D;--white:#ffffff;--orange:#E8681A;--gray:#141414}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Rankings | CuePointe Action Pool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--gold:#F5A800;--gold-dark:#D68A00;--green:#2C5F2E;--green-dark:#1a3a1b;--black:#0D0D0D;--white:#ffffff;--orange:#E8681A;--gray:#141414}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:10px 5vw;background:rgba(13,13,13,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,168,0,0.15)}
-.nav-logo img{height:48px;width:auto;filter:drop-shadow(0 2px 8px rgba(245,168,0,0.3))}
-.nav-links{display:flex;gap:22px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Barlow Condensed';font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--black);padding:9px 20px;border:none;cursor:pointer;font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background 0.2s;text-decoration:none;display:inline-block}
-.nav-cta:hover{background:var(--orange)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.hamburger span{width:24px;height:2px;background:var(--gold)}
-.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(13,13,13,0.99);z-index:150;padding:18px 6vw 26px;border-bottom:1px solid rgba(245,168,0,0.2)}
-.mobile-nav.open{display:block}
-.mobile-nav ul{list-style:none}
-.mobile-nav ul li{border-bottom:1px solid rgba(255,255,255,0.06)}
-.mobile-nav ul li a{display:block;padding:13px 0;color:rgba(255,255,255,0.7);text-decoration:none;font-family:'Barlow Condensed';font-weight:600;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+    /* NAV */
+    nav{position:fixed;top:0;width:100%;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:10px 5vw;background:rgba(13,13,13,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,168,0,0.15)}
+    .nav-logo img{height:48px;width:auto;filter:drop-shadow(0 2px 8px rgba(245,168,0,0.3))}
+    .nav-links{display:flex;gap:22px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Barlow Condensed';font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-cta{background:var(--gold);color:var(--black);padding:9px 20px;border:none;cursor:pointer;font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background 0.2s;text-decoration:none;display:inline-block}
 
-/* PAGE HERO */
-.page-hero{padding:120px 6vw 60px;background:var(--black);position:relative;border-bottom:1px solid rgba(245,168,0,0.15)}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%,rgba(44,95,46,0.2) 0%,transparent 70%);pointer-events:none}
-.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,168,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,168,0,0.03) 1px,transparent 1px);background-size:50px 50px}
-.page-hero-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
-.breadcrumb{font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px}
-.breadcrumb a{color:var(--gold);text-decoration:none}
-.page-hero h1{font-family:'Bebas Neue';font-size:clamp(52px,8vw,100px);line-height:0.9;color:var(--white)}
-.page-hero h1 span{color:var(--gold)}
-.page-hero-meta{display:flex;gap:24px;flex-wrap:wrap}
-.meta-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;font-family:'Barlow Condensed';font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
-.meta-pill strong{color:var(--gold)}
+    /* HERO */
+    .page-hero{padding:120px 6vw 60px;background:var(--black);position:relative;border-bottom:1px solid rgba(245,168,0,0.15)}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,168,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,168,0,0.03) 1px,transparent 1px);background-size:50px 50px}
+    .page-hero-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+    .page-hero h1{font-family:'Bebas Neue';font-size:clamp(52px,8vw,100px);line-height:0.9;color:var(--white)}
+    .page-hero h1 span{color:var(--gold)}
+    .meta-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;font-family:'Barlow Condensed';font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
 
-/* LAYOUT */
-.dash-wrap{padding:50px 6vw 80px;max-width:1400px;margin:0 auto}
+    /* PODIUM */
+    .podium{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:16px;margin:50px 0;align-items:end}
+    .podium-card{padding:32px 20px 24px;text-align:center;position:relative;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02)}
+    .podium-card.p1{border-color:var(--gold);background:linear-gradient(160deg,rgba(245,168,0,0.1) 0%,transparent 100%)}
+    .podium-rank{font-family:'Bebas Neue';font-size:52px;line-height:1;margin-bottom:6px;color:var(--gold)}
+    .podium-name{font-family:'Barlow Condensed';font-weight:700;font-size:20px;color:var(--white)}
+    .podium-pts{font-family:'Bebas Neue';font-size:36px;color:var(--gold)}
 
-/* FILTER BAR */
-.filter-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:36px;padding:20px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07)}
-.filter-bar label{font-family:'Barlow Condensed';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-right:4px}
-.filter-select{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:8px 14px;font-family:'Barlow Condensed';font-size:13px;letter-spacing:1px;cursor:pointer;outline:none}
-.filter-select option{background:#1a1a1a}
-.filter-select:focus{border-color:var(--gold)}
-.search-wrap{margin-left:auto;position:relative}
-.search-wrap input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:8px 14px 8px 36px;font-family:'Barlow';font-size:13px;width:220px;outline:none;transition:border-color 0.2s}
-.search-wrap input:focus{border-color:var(--gold)}
-.search-wrap::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;opacity:0.4}
-
-/* TOP 3 PODIUM */
-.podium{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:16px;margin-bottom:50px;align-items:end}
-.podium-card{padding:32px 20px 24px;text-align:center;position:relative;border:1px solid rgba(255,255,255,0.07);transition:transform 0.3s}
-.podium-card:hover{transform:translateY(-4px)}
-.podium-card.p1{background:linear-gradient(160deg,rgba(245,168,0,0.15) 0%,rgba(13,13,13,0.9) 100%);border-color:rgba(245,168,0,0.3)}
-.podium-card.p2{background:linear-gradient(160deg,rgba(192,192,192,0.1) 0%,rgba(13,13,13,0.9) 100%);border-color:rgba(192,192,192,0.2)}
-.podium-card.p3{background:linear-gradient(160deg,rgba(205,127,50,0.1) 0%,rgba(13,13,13,0.9) 100%);border-color:rgba(205,127,50,0.2)}
-.podium-rank{font-family:'Bebas Neue';font-size:52px;line-height:1;margin-bottom:6px}
-.p1 .podium-rank{color:var(--gold)}.p2 .podium-rank{color:#C0C0C0}.p3 .podium-rank{color:#CD7F32}
-.podium-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px}
-.p1 .podium-avatar{background:rgba(245,168,0,0.15);border:2px solid var(--gold)}
-.p2 .podium-avatar{background:rgba(192,192,192,0.1);border:2px solid #C0C0C0}
-.p3 .podium-avatar{background:rgba(205,127,50,0.1);border:2px solid #CD7F32}
-.podium-name{font-family:'Barlow Condensed';font-weight:700;font-size:20px;color:var(--white);margin-bottom:4px}
-.podium-area{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:14px}
-.podium-pts{font-family:'Bebas Neue';font-size:36px;color:var(--gold)}
-.podium-pts-label{font-family:'Barlow Condensed';font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
-.podium-badges{margin-top:10px;font-size:18px;letter-spacing:4px}
-.crown{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:28px}
-
-/* RANKINGS TABLE */
-.rankings-table-wrap{overflow-x:auto}
-.rankings-table{width:100%;border-collapse:collapse;min-width:700px}
-.rankings-table thead tr{border-bottom:2px solid var(--gold)}
-.rankings-table th{font-family:'Barlow Condensed';font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:12px 14px;text-align:left;white-space:nowrap}
-.rankings-table tbody tr{border-bottom:1px solid rgba(255,255,255,0.05);transition:background 0.2s;cursor:default}
-.rankings-table tbody tr:hover{background:rgba(245,168,0,0.04)}
-.rankings-table td{padding:14px 14px;vertical-align:middle}
-.rank-cell{font-family:'Bebas Neue';font-size:24px;width:50px}
-.rank-cell.gold{color:var(--gold)}.rank-cell.silver{color:#C0C0C0}.rank-cell.bronze{color:#CD7F32}.rank-cell.other{color:rgba(255,255,255,0.25)}
-.player-cell{display:flex;align-items:center;gap:12px}
-.player-ava{width:36px;height:36px;border-radius:50%;background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.player-name{font-family:'Barlow Condensed';font-weight:700;font-size:16px;color:var(--white)}
-.player-area{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px}
-.stat-cell{font-family:'Barlow Condensed';font-size:15px;font-weight:600;color:rgba(255,255,255,0.8)}
-.wbar-wrap{width:90px;height:5px;background:rgba(255,255,255,0.08);border-radius:3px;display:inline-block}
-.wbar{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--gold))}
-.win-pct{font-family:'Barlow Condensed';font-size:13px;font-weight:600;color:var(--gold);margin-left:8px}
-.pts-cell{font-family:'Bebas Neue';font-size:22px;color:var(--gold)}
-.badge-cell{font-size:16px;letter-spacing:3px}
-.trend-up{color:#6ee86e;font-size:13px;font-family:'Barlow Condensed';font-weight:700}
-.trend-dn{color:#e86e6e;font-size:13px;font-family:'Barlow Condensed';font-weight:700}
-.trend-eq{color:rgba(255,255,255,0.3);font-size:13px}
-.tier-badge{display:inline-block;padding:2px 8px;font-family:'Barlow Condensed';font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase}
-.tier-elite{background:rgba(245,168,0,0.15);color:var(--gold);border:1px solid rgba(245,168,0,0.3)}
-.tier-pro{background:rgba(192,192,192,0.1);color:#C0C0C0;border:1px solid rgba(192,192,192,0.25)}
-.tier-am{background:rgba(44,95,46,0.2);color:#6ee86e;border:1px solid rgba(110,232,110,0.2)}
-
-/* STATS STRIP */
-.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:40px}
-.strip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:22px 20px;border-left:3px solid var(--gold)}
-.strip-card .snum{font-family:'Bebas Neue';font-size:40px;color:var(--gold);line-height:1}
-.strip-card .slabel{font-family:'Barlow Condensed';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:3px}
-
-/* SECTION TITLES */
-.sec-label{font-family:'Barlow Condensed';font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.sec-label::before{content:'// '}
-.sec-title{font-family:'Bebas Neue';font-size:clamp(28px,4vw,48px);color:var(--white);margin-bottom:24px}
-
-/* PAGINATION */
-.pagination{display:flex;gap:6px;justify-content:center;margin-top:32px;flex-wrap:wrap}
-.page-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:'Barlow Condensed';font-weight:700;font-size:13px;transition:all 0.2s}
-.page-btn.active,.page-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
-
-/* PLAYER OF THE WEEK */
-.potw{background:linear-gradient(135deg,rgba(44,95,46,0.3) 0%,rgba(13,13,13,0.9) 100%);border:1px solid rgba(245,168,0,0.25);padding:32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:40px}
-.potw-crown{font-size:60px;line-height:1}
-.potw-tag{font-family:'Barlow Condensed';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.potw-name{font-family:'Bebas Neue';font-size:44px;line-height:1;color:var(--white);margin-bottom:6px}
-.potw-name span{color:var(--gold)}
-.potw-stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:12px}
-.potw-stat .n{font-family:'Bebas Neue';font-size:28px;color:var(--gold)}
-.potw-stat .l{font-family:'Barlow Condensed';font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
-
-/* FOOTER */
-footer{background:rgba(0,0,0,0.6);border-top:1px solid rgba(255,255,255,0.06);padding:28px 6vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-footer p{font-size:12px;color:rgba(255,255,255,0.3)}
-.ft-links{display:flex;gap:20px}
-.ft-links a{font-family:'Barlow Condensed';font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s}
-.ft-links a:hover{color:var(--gold)}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.5s,transform 0.5s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-@media(max-width:900px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.podium{grid-template-columns:1fr}.stats-strip{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.stats-strip{grid-template-columns:1fr}.filter-bar{flex-direction:column;align-items:flex-start}.search-wrap{margin-left:0;width:100%}.search-wrap input{width:100%}}
-</style>
+    /* TABLE */
+    .dash-wrap{padding:50px 6vw 80px;max-width:1400px;margin:0 auto}
+    .rankings-table{width:100%;border-collapse:collapse;min-width:700px}
+    .rankings-table thead tr{border-bottom:2px solid var(--gold)}
+    .rankings-table th{font-family:'Barlow Condensed';font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:12px 14px;text-align:left}
+    .rankings-table td{padding:14px 14px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .pts-cell{font-family:'Bebas Neue';font-size:22px;color:var(--gold)}
+    .tier-badge{display:inline-block;padding:2px 8px;font-family:'Barlow Condensed';font-weight:700;font-size:10px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2)}
+    
+    .reveal{opacity:0;transform:translateY(20px);transition:all 0.6s ease-out}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
 </head>
 <body>
 
@@ -149,293 +55,121 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3)}
     <li><a href="index.html">Home</a></li>
     <li><a href="rankings.html" class="active">Rankings</a></li>
     <li><a href="register.html">Register</a></li>
-    <li><a href="news.html">News</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="venues.html">Venues</a></li>
-    <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="register.html" class="nav-cta">Register Now</a>
-  <div class="hamburger" onclick="document.getElementById('mn').classList.toggle('open')"><span></span><span></span><span></span></div>
 </nav>
-<div class="mobile-nav" id="mn"><ul>
-  <li><a href="index.html">Home</a></li><li><a href="rankings.html">Rankings</a></li>
-  <li><a href="register.html">Register to Play</a></li><li><a href="news.html">News</a></li>
-  <li><a href="about.html">About Us</a></li><li><a href="venues.html">Venues</a></li>
-  <li><a href="contact.html">Contact</a></li>
-</ul></div>
 
-<!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-grid"></div>
   <div class="page-hero-inner">
-    <div>
-      <div class="breadcrumb"><a href="index.html">Home</a> / Rankings</div>
-      <h1>PLAYER<br><span>RANKINGS</span></h1>
-    </div>
+    <div><h1>PLAYER<br><span>RANKINGS</span></h1></div>
     <div class="page-hero-meta">
-      <div class="meta-pill">Season <strong>2025</strong></div>
-      <div class="meta-pill">Updated <strong>Weekly</strong></div>
-      <div class="meta-pill">Players <strong>48</strong></div>
-      <div class="meta-pill">Top Prize <strong>UGX 30M</strong></div>
+      <div class="meta-pill">Season <strong>2026</strong></div>
+      <div class="meta-pill">Players <strong>6</strong></div>
     </div>
   </div>
 </div>
 
 <div class="dash-wrap">
-
-  <!-- PLAYER OF THE WEEK -->
-  <div class="potw reveal">
-    <div class="potw-crown">🏆</div>
-    <div>
-      <div class="potw-tag">// Player of the Week</div>
-      <div class="potw-name">Emmanuel <span>Kateregga</span></div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.5)">Kabalagala · 3 wins this week · Flawless Game & Fast Finish bonuses earned</div>
-      <div class="potw-stats">
-        <div class="potw-stat"><div class="n">2,840</div><div class="l">Season Points</div></div>
-        <div class="potw-stat"><div class="n">83%</div><div class="l">Win Rate</div></div>
-        <div class="potw-stat"><div class="n">24</div><div class="l">Games Played</div></div>
-        <div class="potw-stat"><div class="n">⚡🎯🏅</div><div class="l">Badges Earned</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STATS STRIP -->
-  <div class="stats-strip reveal">
-    <div class="strip-card"><div class="snum">48</div><div class="slabel">Ranked Players</div></div>
-    <div class="strip-card"><div class="snum">312</div><div class="slabel">Games This Season</div></div>
-    <div class="strip-card"><div class="snum">17</div><div class="slabel">Events Completed</div></div>
-    <div class="strip-card"><div class="snum">UGX 4.2M</div><div class="slabel">Prizes Awarded</div></div>
-  </div>
-
-  <!-- TOP 3 PODIUM -->
-  <div class="sec-label reveal">Top 3 This Season</div>
   <div class="podium reveal">
     <div class="podium-card p2">
       <div class="podium-rank">2</div>
-      <div class="podium-avatar">🎱</div>
-      <div class="podium-name">David Musoke</div>
-      <div class="podium-area">Kansanga</div>
-      <div class="podium-pts">2,610</div>
-      <div class="podium-pts-label">Season Points</div>
-      <div class="podium-badges">🖤⚡</div>
+      <div class="podium-name">Cuminaya</div>
+      <div class="podium-pts">39.5</div>
+      <div style="font-size:10px;text-transform:uppercase;opacity:0.5">Overall Rating</div>
     </div>
     <div class="podium-card p1">
-      <div class="crown">👑</div>
+      <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:30px">👑</div>
       <div class="podium-rank">1</div>
-      <div class="podium-avatar">🎱</div>
-      <div class="podium-name">Emmanuel K.</div>
-      <div class="podium-area">Kabalagala</div>
-      <div class="podium-pts">2,840</div>
-      <div class="podium-pts-label">Season Points</div>
-      <div class="podium-badges">⚡🎯🏅</div>
+      <div class="podium-name">Hassan (Cash Code)</div>
+      <div class="podium-pts">41.5</div>
+      <div style="font-size:10px;text-transform:uppercase;opacity:0.5">Overall Rating</div>
     </div>
     <div class="podium-card p3">
       <div class="podium-rank">3</div>
-      <div class="podium-avatar">🎱</div>
-      <div class="podium-name">Sarah Namutebi</div>
-      <div class="podium-area">Ggaba Road</div>
-      <div class="podium-pts">2,290</div>
-      <div class="podium-pts-label">Season Points</div>
-      <div class="podium-badges">🎯🏅</div>
+      <div class="podium-name">Abaka</div>
+      <div class="podium-pts">38.5</div>
+      <div style="font-size:10px;text-transform:uppercase;opacity:0.5">Overall Rating</div>
     </div>
   </div>
 
-  <!-- FILTER BAR -->
-  <div class="filter-bar reveal">
-    <label>Division</label>
-    <select class="filter-select" onchange="filterTable()">
-      <option value="all">All Divisions</option>
-      <option value="elite">Elite</option>
-      <option value="pro">Pro</option>
-      <option value="amateur">Amateur</option>
-    </select>
-    <label style="margin-left:14px">Area</label>
-    <select class="filter-select" onchange="filterTable()">
-      <option>All Areas</option>
-      <option>Kabalagala</option>
-      <option>Kansanga</option>
-      <option>Ggaba Road</option>
-      <option>Kampala Central</option>
-    </select>
-    <label style="margin-left:14px">Sort By</label>
-    <select class="filter-select" id="sortSel" onchange="filterTable()">
-      <option value="pts">Points</option>
-      <option value="wr">Win Rate</option>
-      <option value="played">Games Played</option>
-    </select>
-    <div class="search-wrap">
-      <input type="text" id="searchBox" placeholder="Search player..." oninput="filterTable()">
-    </div>
-  </div>
-
-  <!-- FULL RANKINGS TABLE -->
-  <div class="sec-label reveal">Full Season Rankings</div>
   <div class="rankings-table-wrap reveal">
-    <table class="rankings-table" id="rankTable">
+    <table class="rankings-table">
       <thead>
         <tr>
           <th>#</th>
           <th>Player</th>
-          <th>Division</th>
-          <th>Played</th>
-          <th>W</th>
-          <th>L</th>
-          <th>Win Rate</th>
-          <th>Badges</th>
-          <th>Trend</th>
-          <th>Points</th>
+          <th>Location</th>
+          <th>Membership</th>
+          <th>Consistency</th>
+          <th>Sportsmanship</th>
+          <th>Rating</th>
         </tr>
       </thead>
-      <tbody id="rankBody">
-        <tr data-tier="elite" data-name="emmanuel">
-          <td class="rank-cell gold">1</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Emmanuel K.</div><div class="player-area">Kabalagala</div></div></div></td>
-          <td><span class="tier-badge tier-elite">Elite</span></td>
-          <td class="stat-cell">24</td><td class="stat-cell">20</td><td class="stat-cell">4</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:83%"></div></div><span class="win-pct">83%</span></div></td>
-          <td class="badge-cell">⚡🎯🏅</td>
-          <td><span class="trend-up">▲ 2</span></td>
-          <td class="pts-cell">2,840</td>
+      <tbody>
+        <tr>
+          <td class="pts-cell" style="color:var(--gold)">1</td>
+          <td><div class="podium-name">Hassan (Cash Code)</div></td>
+          <td>Buziga</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>75%</td>
+          <td>8/10</td>
+          <td class="pts-cell">41.5</td>
         </tr>
-        <tr data-tier="elite" data-name="david">
-          <td class="rank-cell silver">2</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">David Musoke</div><div class="player-area">Kansanga</div></div></div></td>
-          <td><span class="tier-badge tier-elite">Elite</span></td>
-          <td class="stat-cell">22</td><td class="stat-cell">17</td><td class="stat-cell">5</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:77%"></div></div><span class="win-pct">77%</span></div></td>
-          <td class="badge-cell">🖤⚡</td>
-          <td><span class="trend-eq">— </span></td>
-          <td class="pts-cell">2,610</td>
+        <tr>
+          <td class="pts-cell">2</td>
+          <td><div class="podium-name">Cuminaya</div></td>
+          <td>Kansanga</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>72%</td>
+          <td>7/10</td>
+          <td class="pts-cell">39.5</td>
         </tr>
-        <tr data-tier="elite" data-name="sarah">
-          <td class="rank-cell bronze">3</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Sarah Namutebi</div><div class="player-area">Ggaba Road</div></div></div></td>
-          <td><span class="tier-badge tier-elite">Elite</span></td>
-          <td class="stat-cell">20</td><td class="stat-cell">15</td><td class="stat-cell">5</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:75%"></div></div><span class="win-pct">75%</span></div></td>
-          <td class="badge-cell">🎯🏅</td>
-          <td><span class="trend-up">▲ 1</span></td>
-          <td class="pts-cell">2,290</td>
+        <tr>
+          <td class="pts-cell">3</td>
+          <td><div class="podium-name">Abaka</div></td>
+          <td>Kabalagala</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>70%</td>
+          <td>7/10</td>
+          <td class="pts-cell">38.5</td>
         </tr>
-        <tr data-tier="pro" data-name="brian">
-          <td class="rank-cell other">4</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Brian Okello</div><div class="player-area">Kabalagala</div></div></div></td>
-          <td><span class="tier-badge tier-pro">Pro</span></td>
-          <td class="stat-cell">19</td><td class="stat-cell">13</td><td class="stat-cell">6</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:68%"></div></div><span class="win-pct">68%</span></div></td>
-          <td class="badge-cell">⚡</td>
-          <td><span class="trend-dn">▼ 1</span></td>
-          <td class="pts-cell">1,980</td>
+        <tr>
+          <td class="pts-cell">4</td>
+          <td><div class="podium-name">Tet Teli</div></td>
+          <td>Namungoona</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>66%</td>
+          <td>7/10</td>
+          <td class="pts-cell">36.5</td>
         </tr>
-        <tr data-tier="pro" data-name="fatuma">
-          <td class="rank-cell other">5</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Fatuma Achieng</div><div class="player-area">Kansanga</div></div></div></td>
-          <td><span class="tier-badge tier-pro">Pro</span></td>
-          <td class="stat-cell">18</td><td class="stat-cell">11</td><td class="stat-cell">7</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:61%"></div></div><span class="win-pct">61%</span></div></td>
-          <td class="badge-cell">🏅</td>
-          <td><span class="trend-up">▲ 3</span></td>
-          <td class="pts-cell">1,740</td>
+        <tr>
+          <td class="pts-cell">5</td>
+          <td><div class="podium-name">Kay Moola (GNL)</div></td>
+          <td>Namungoona</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>54%</td>
+          <td>7/10</td>
+          <td class="pts-cell">30.5</td>
         </tr>
-        <tr data-tier="pro" data-name="ronald">
-          <td class="rank-cell other">6</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Ronald Tumwine</div><div class="player-area">Ggaba Road</div></div></div></td>
-          <td><span class="tier-badge tier-pro">Pro</span></td>
-          <td class="stat-cell">16</td><td class="stat-cell">9</td><td class="stat-cell">7</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:56%"></div></div><span class="win-pct">56%</span></div></td>
-          <td class="badge-cell">🎯</td>
-          <td><span class="trend-eq">— </span></td>
-          <td class="pts-cell">1,450</td>
-        </tr>
-        <tr data-tier="amateur" data-name="grace">
-          <td class="rank-cell other">7</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Grace Namukasa</div><div class="player-area">Kampala Central</div></div></div></td>
-          <td><span class="tier-badge tier-am">Amateur</span></td>
-          <td class="stat-cell">14</td><td class="stat-cell">8</td><td class="stat-cell">6</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:57%"></div></div><span class="win-pct">57%</span></div></td>
-          <td class="badge-cell">🏅</td>
-          <td><span class="trend-up">▲ 5</span></td>
-          <td class="pts-cell">1,200</td>
-        </tr>
-        <tr data-tier="amateur" data-name="joseph">
-          <td class="rank-cell other">8</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Joseph Ssemwogerere</div><div class="player-area">Kabalagala</div></div></div></td>
-          <td><span class="tier-badge tier-am">Amateur</span></td>
-          <td class="stat-cell">12</td><td class="stat-cell">6</td><td class="stat-cell">6</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:50%"></div></div><span class="win-pct">50%</span></div></td>
-          <td class="badge-cell"></td>
-          <td><span class="trend-dn">▼ 2</span></td>
-          <td class="pts-cell">960</td>
-        </tr>
-        <tr data-tier="amateur" data-name="diana">
-          <td class="rank-cell other">9</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Diana Nakato</div><div class="player-area">Kansanga</div></div></div></td>
-          <td><span class="tier-badge tier-am">Amateur</span></td>
-          <td class="stat-cell">11</td><td class="stat-cell">5</td><td class="stat-cell">6</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:45%"></div></div><span class="win-pct">45%</span></div></td>
-          <td class="badge-cell"></td>
-          <td><span class="trend-up">▲ 1</span></td>
-          <td class="pts-cell">820</td>
-        </tr>
-        <tr data-tier="amateur" data-name="moses">
-          <td class="rank-cell other">10</td>
-          <td><div class="player-cell"><div class="player-ava">🎱</div><div><div class="player-name">Moses Byaruhanga</div><div class="player-area">Ggaba Road</div></div></div></td>
-          <td><span class="tier-badge tier-am">Amateur</span></td>
-          <td class="stat-cell">10</td><td class="stat-cell">4</td><td class="stat-cell">6</td>
-          <td><div style="display:flex;align-items:center;gap:8px"><div class="wbar-wrap"><div class="wbar" style="width:40%"></div></div><span class="win-pct">40%</span></div></td>
-          <td class="badge-cell"></td>
-          <td><span class="trend-eq">— </span></td>
-          <td class="pts-cell">680</td>
+        <tr>
+          <td class="pts-cell">6</td>
+          <td><div class="podium-name">Richard M</div></td>
+          <td>Mutundwe</td>
+          <td><span class="tier-badge">K.O</span></td>
+          <td>53%</td>
+          <td>6/10</td>
+          <td class="pts-cell">29.5</td>
         </tr>
       </tbody>
     </table>
   </div>
-
-  <div class="pagination reveal">
-    <div class="page-btn active">1</div>
-    <div class="page-btn">2</div>
-    <div class="page-btn">3</div>
-    <div class="page-btn">4</div>
-    <div class="page-btn">5</div>
-    <div class="page-btn">›</div>
-  </div>
-
-  <!-- BADGE KEY -->
-  <div style="margin-top:40px;padding:20px 24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07)" class="reveal">
-    <div class="sec-label" style="margin-bottom:10px">Badge Key</div>
-    <div style="display:flex;gap:28px;flex-wrap:wrap">
-      <span style="font-size:13px;color:rgba(255,255,255,0.5)">⚡ Fast Finish – Won in under 5 min</span>
-      <span style="font-size:13px;color:rgba(255,255,255,0.5)">🎯 Flawless Game – Zero mistakes</span>
-      <span style="font-size:13px;color:rgba(255,255,255,0.5)">🖤 Break Achievement – Black on break</span>
-      <span style="font-size:13px;color:rgba(255,255,255,0.5)">🏅 Sportsmanship Award</span>
-      <span style="font-size:13px;color:rgba(255,255,255,0.5)">🎱 Endgame Mastery – Clutch last 3 balls</span>
-    </div>
-  </div>
-
-  <div style="text-align:center;margin-top:40px" class="reveal">
-    <a href="register.html" style="background:var(--gold);color:var(--black);padding:14px 32px;text-decoration:none;font-family:'Barlow Condensed';font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);display:inline-block">Earn Your Ranking — Register Now</a>
-  </div>
 </div>
 
-<footer>
-  <p>© 2025 CuePointe Action Pool · Kampala, Uganda</p>
-  <div class="ft-links">
-    <a href="index.html">Home</a><a href="rankings.html">Rankings</a>
-    <a href="register.html">Register</a><a href="contact.html">Contact</a>
-  </div>
-</footer>
-
 <script>
-  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add('visible'),i*60)})},{threshold:0.08});
+  const obs=new IntersectionObserver((e)=>{e.forEach((en)=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-
-  function filterTable(){
-    const q=document.getElementById('searchBox').value.toLowerCase();
-    document.querySelectorAll('#rankBody tr').forEach(tr=>{
-      const name=tr.dataset.name||'';
-      tr.style.display=name.includes(q)||q===''?'':'none';
-    });
-  }
 </script>
 </body>
 </html>
