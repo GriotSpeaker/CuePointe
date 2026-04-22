@@ -1107,6 +1107,38 @@ function acceptCookie() {
   <p>We use cookies to improve your experience. <a href="#faq">Learn more</a>.</p>
   <button class="cookie-accept" onclick="acceptCookie()">Accept</button>
 </div>
+<script>
+  async function syncHomeRankings() {
+    try {
+      const response = await fetch('players.json');
+      const data = await response.json();
+      
+      // This assumes you have a table or list on your homepage 
+      // with an ID of "homeRankings"
+      const homeList = document.getElementById('homeRankings');
+      if (!homeList) return;
 
+      homeList.innerHTML = ''; // Clear old names
+
+      // Sort and take only the Top 3 for the homepage
+      const topPlayers = data.players
+        .sort((a, b) => b.ranking_points - a.ranking_points)
+        .slice(0, 3);
+
+      topPlayers.forEach((player, index) => {
+        homeList.innerHTML += `
+          <div class="rank-item">
+            <span>#${index + 1}</span>
+            <strong>${player.name}</strong>
+            <span>${player.ranking_points} pts</span>
+          </div>
+        `;
+      });
+    } catch (err) {
+      console.log("Homepage sync failed:", err);
+    }
+  }
+  window.onload = syncHomeRankings;
+</script>
 </body>
 </html>
