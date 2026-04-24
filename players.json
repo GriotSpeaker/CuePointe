@@ -1,46 +1,7 @@
-import json
-import os
-
-def add_player():
-    file_path = 'players.json'
-    
-    # Load existing data or create new structure
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-    else:
-        data = {"players": []}
-
-    print("--- Add New CuePointe Player ---")
-    name = input("Player Name: ")
-    area = input("Location (e.g., Buziga): ")
-    division = input("Membership (e.g., K.O): ")
-    consistency = input("Consistency % (e.g., 75): ")
-    sportsmanship = input("Sportsmanship /10 (e.g., 8): ")
-    rating = float(input("Overall Rating (e.g., 41.5): "))
-
-    # Create player object
-    new_player = {
-        "name": name,
-        "area": area,
-        "division": division,
-        "consistency score": f"{consistency score}%",
-        "sportsmanship": f"{sportsmanship}/10",
-        "ranking_points": rating,
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "win_rate": 0,
-        "badges": "🎱"
+[
+    {
+        "name": "Abaka",
+        "points": 38.5,
+        "played": 2
     }
-
-    data['players'].append(new_player)
-
-    # Save back to JSON
-    with open(file_path, 'w') as f:
-        json.dump(data, f, indent=4)
-    
-    print(f"\n✅ {name} has been added to the database!")
-
-if __name__ == "__main__":
-    add_player()
+]
