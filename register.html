@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-221BNVJR22"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-221BNVJR22');
-</script>
-<<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-<link rel="manifest" href="site.webmanifest">>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Entry | CuePointe</title>
+    <title>Register to Play | CuePointe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-gold: #D4AF37;
             --brand-black: #0a0a0a;
-            --neon-green: #39FF14;
             --stadium-gray: #1a1a1a;
         }
 
@@ -30,148 +16,143 @@
             font-family: 'Oswald', sans-serif;
             background-color: var(--brand-black);
             color: white;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            text-transform: uppercase;
         }
 
         .form-container {
             background: var(--stadium-gray);
-            padding: 40px;
+            padding: 30px;
             border-radius: 12px;
             border: 2px solid var(--brand-gold);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
             width: 100%;
-            max-width: 450px;
-            margin: 20px;
-            text-align: center; /* Centers the logo and header */
+            max-width: 600px;
         }
 
-        /* LOGO STYLING */
-        .form-logo {
-            max-width: 120px;
+        .logo-header {
+            text-align: center;
             margin-bottom: 20px;
-            border-radius: 8px;
-            background: #fff; /* White background makes the logo pop */
-            padding: 5px;
-            border: 2px solid var(--brand-gold);
         }
 
-        .header h1 {
-            font-size: 2.2rem;
-            margin: 0;
+        .logo-header img {
+            max-width: 150px;
+            border-radius: 8px;
+        }
+
+        h1 {
             color: var(--brand-gold);
+            text-align: center;
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        .header p {
-            color: var(--neon-green);
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-        }
-
         .form-group {
-            text-align: left; /* Keeps inputs easy to read */
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 0.8rem;
-            color: #bbb;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: var(--brand-gold);
+            text-transform: uppercase;
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background: #000;
             border: 1px solid #333;
             color: white;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box;
+            border-radius: 4px;
             font-family: 'Oswald', sans-serif;
+            box-sizing: border-box;
         }
 
-        input:focus {
-            border-color: var(--neon-green);
-            outline: none;
-        }
-
-        /* THE STYLISH CONFIRM BUTTON */
-        .btn-confirm {
+        .btn-submit {
             width: 100%;
-            padding: 18px;
+            padding: 15px;
             background: var(--brand-gold);
             color: black;
             border: none;
-            font-size: 1.3rem;
-            font-weight: 900;
+            font-weight: bold;
+            font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            margin-top: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 0px #9e8229; /* 3D effect */
+            margin-top: 20px;
         }
 
-        .btn-confirm:hover {
-            background: var(--neon-green);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(57, 255, 20, 0.4);
-            color: #000;
+        .btn-submit:hover {
+            background: #fff;
         }
-
-        .btn-confirm:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0px #2a7a0a;
-        }
-
-        .back-link {
-            display: block;
-            margin-top: 25px;
-            color: #555;
-            text-decoration: none;
-            font-size: 0.8rem;
-        }
-
-        .back-link:hover { color: var(--brand-gold); }
     </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <img src="CuePointe_Logo.jpg" alt="CuePointe Logo" class="form-logo">
+<div class="form-container">
+    <div class="logo-header">
+        <img src="CuePointe_Logo.jpg" alt="CuePointe Logo">
+    </div>
+    
+    <h1>REGISTER TO PLAY</h1>
 
-        <div class="header">
-            <h1>PLAYER ENTRY</h1>
-            <p>Sanctioned Action Pool Series</p>
+    <form action="https://formspree.io/f/xvzvedly" method="POST">
+        
+        <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" name="first_name" required>
         </div>
 
-      <form action="https://formspree.io/f/xvzvedly" method="POST">
-            <div class="form-group">
-                <label>Full Player Name</label>
-                <input type="text" name="name" placeholder="ENTER NAME" required>
-            </div>
+        <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" name="last_name" required>
+        </div>
 
-            <div class="form-group">
-                <label>WhatsApp Number</label>
-                <input type="tel" name="whatsapp" placeholder="+256..." required>
-            </div>
+        <div class="form-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" name="phone" placeholder="+256..." required>
+        </div>
 
-            <div class="form-group">
-                <label>Preferred Venue</label>
-                <select name="venue">
-                    <option value="Kabalagala">Kabalagala Hub</option>
-                    <option value="Kansanga">Kansanga Hub</option>
-                    <option value="Tournament Special">Tournament Special</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label>Skill Level *</label>
+            <select name="skill_level" required>
+                <option value="">Select your level</option>
+                <option value="Beginner">Beginner – I play casually</option>
+                <option value="Intermediate">Intermediate – I play regularly</option>
+                <option value="Advanced">Advanced – I compete seriously</option>
+                <option value="Professional">Professional – I play at top level</option>
+            </select>
+        </div>
 
-            <button type="submit" class="btn-confirm">CONFIRM REGISTRATION</button>
-        </form>
+        <div class="form-group">
+            <label>Tournament / Event *</label>
+            <select name="event" required>
+                <option value="">Select an event</option>
+                <option value="Weekly #18">Weekly Knockout #18 – April 5, 2026</option>
+                <option value="Weekly #19">Weekly Knockout #19 – April 12, 2026</option>
+                <option value="City League">Kampala City League</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Area / Neighborhood *</label>
+            <input type="text" name="area" required>
+        </div>
+
+        <div class="form-group">
+            <label>How did you hear about us?</label>
+            <select name="source">
+                <option value="Friend">Friend / Word of mouth</option>
+                <option value="Social Media">Social Media</option>
+                <option value="TikTok">TikTok</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Registration</button>
+    </form>
+</div>
+
+</body>
+</html>
